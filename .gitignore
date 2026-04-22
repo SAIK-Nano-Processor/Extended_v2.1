@@ -1,0 +1,51 @@
+# Vivado Generated Files
+
+*.jou
+*.log
+*.str
+*.wdb
+*.bak
+*.tmp
+*.cache
+# *.xml   ← removed (can break projects)
+
+# Vivado directories
+.Xil/
+.cache/
+.hw/
+.ip_user_files/
+.runs/
+.sim/
+
+# Simulation Files
+
+*.vcd
+*.vhw
+*.vst
+*.asdb
+*.saif
+*.wlf
+
+# Build / Output Files
+
+*.o
+*.out
+*.bin
+*.bit
+*.dcp
+
+# OS & Editor Files
+
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+.vscode/
+
+# IMPORTANT: Files to keep
+
+!*.vhd
+!*.vhdl
+!*.xdc
+!*.xpr
