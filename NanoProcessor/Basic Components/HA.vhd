@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
--- Company: UOM CSE
--- Engineer: Jayarathne D.G.S.A
+-- Company: SAIK 
+-- Engineer: Jayakody K.I.A
 -- 
 -- Create Date: 02/17/2026 02:23:29 PM
 -- Design Name: half Adder

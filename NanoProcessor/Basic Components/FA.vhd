@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
--- Company: UOM CSE
--- Engineer: JAYARATHNE D.G.S.A
+-- Company: SAIK 
+-- Engineer: Jayakody K.I.A
 -- 
 -- Create Date: 02/17/2026 03:05:49 PM
 -- Design Name: Full Adder
