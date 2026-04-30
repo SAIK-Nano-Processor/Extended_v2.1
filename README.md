@@ -1,4 +1,4 @@
-# 🧠 VHDL-Based 4-Bit Nano Processor V1.0
+# 🧠 SAIK Nano Processor V1.0
 
 <p align="center">
   <img width="440" height="440" alt="NanoV1" src="https://github.com/user-attachments/assets/6b08f9b9-6cf5-448c-aed4-c6f252d92c17" />
