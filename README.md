@@ -1,7 +1,7 @@
 # 🧠 VHDL-Based 4-Bit Nano Processor
 
 <p align="center">
-  <img width="640" height="640" alt="NanoV1" src="https://github.com/user-attachments/assets/6b08f9b9-6cf5-448c-aed4-c6f252d92c17" />
+  <img width="440" height="440" alt="NanoV1" src="https://github.com/user-attachments/assets/6b08f9b9-6cf5-448c-aed4-c6f252d92c17" />
 </p>
 
 ---
