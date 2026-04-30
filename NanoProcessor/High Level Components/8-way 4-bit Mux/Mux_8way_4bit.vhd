@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use WORK.BusDef.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,30 +33,23 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Mux_8way_4bit is
-    Port ( R0 : in STD_LOGIC_VECTOR (3 downto 0);
-           R1 : in STD_LOGIC_VECTOR (3 downto 0);
-           R2 : in STD_LOGIC_VECTOR (3 downto 0);
-           R3 : in STD_LOGIC_VECTOR (3 downto 0);
-           R4 : in STD_LOGIC_VECTOR (3 downto 0);
-           R5 : in STD_LOGIC_VECTOR (3 downto 0);
-           R6 : in STD_LOGIC_VECTOR (3 downto 0);
-           R7 : in STD_LOGIC_VECTOR (3 downto 0);
-           reg_select : in STD_LOGIC_VECTOR (2 downto 0);
-           output_bus : out STD_LOGIC_VECTOR (3 downto 0));
+    Port ( reg_bank_in : in Bus_8x4;
+           reg_select : in Address_sel;
+           output_bus : out Data_Bus);
 end Mux_8way_4bit;
 
 architecture Behavioral of Mux_8way_4bit is
 
 begin
     with reg_select select output_bus <=
-        R0 when "000",
-        R1 when "001",
-        R2 when "010",
-        R3 when "011",
-        R4 when "100",
-        R5 when "101",
-        R6 when "110",
-        R7 when "111",
+        reg_bank_in(0) when "000",
+        reg_bank_in(1) when "001",
+        reg_bank_in(2) when "010",
+        reg_bank_in(3) when "011",
+        reg_bank_in(4) when "100",
+        reg_bank_in(5) when "101",
+        reg_bank_in(6) when "110",
+        reg_bank_in(7) when "111",
         "XXXX" when others; -- Safety fallback
 
 end Behavioral;
