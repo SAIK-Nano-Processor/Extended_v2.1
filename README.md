@@ -38,7 +38,7 @@ The processor executes 12-bit instructions parsed by a centralized Instruction D
 | `JZR R, d`   | Jump to address `d` if register `R` is 0 | `11_R(3)_000_d(3)`        |
 
 ### 🧮 Current ROM Program
-The `Program_ROM.vhd` is currently pre-loaded with a test sequence that calculates `1 + 2 + 3 = 6` and safely halts execution:
+The `Program_ROM.vhd` is currently pre-loaded with a test sequence that calculates `1 + 2 + 3 = 6` and loops:
 1.  `MOVI R7, 0`
 2.  `MOVI R1, 1`
 3.  `MOVI R2, 2`
@@ -46,7 +46,7 @@ The `Program_ROM.vhd` is currently pre-loaded with a test sequence that calculat
 5.  `ADD R7, R1`
 6.  `ADD R7, R2`
 7.  `ADD R7, R3`
-8.  `JZR R0, 7` *(Infinite Halt Loop)*
+8.  `JZR R0, 0` *(Infinite Loop)*
 
 ---
 
