@@ -45,6 +45,7 @@ package BusDef is
     subtype Reg_data_out is Bus_8x4;                        -- Bus for data output from register bank
     subtype Address_sel is Bus_3_bit;                       -- Bus for memory address selection
     subtype Data_bus is Bus_4_bit;                          -- Bus for 4 bit data transfer
+    subtype Data_bus_3_bit is Bus_3_bit;
     subtype Instruction_bus is Bus_12_bit;                  -- Instruction bus
     
 end package BusDef;
