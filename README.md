@@ -63,32 +63,91 @@ The `Program_ROM.vhd` is currently pre-loaded with a test sequence that calculat
 
 ## 📁 Project Structure
 ```text
-NanoProcessor_Project/
-├── docs/                        # Project documentation and images
-├── constraints/                 
-│   └── Basys3_Master.xdc        # Physical board mapping
-├── sim/                         
-│   └── TB_NanoProcessor.vhd     # Testbenches
-└── src/                         # Synthesizable VHDL Source Code
-    ├── common/                  
-    │   ├── BusDef.vhd           # Global array and bus types
-    │   └── Constants.vhd        # Opcode definitions
-    ├── alu/                     
-    │   ├── HA.vhd & FA.vhd      # Adders
-    │   ├── RCA_3.vhd & RCA_4.vhd
-    │   └── 4_bit_ALU.vhd        # Main Arithmetic Logic Unit
-    ├── memory/                  
+NanoProcessor_V1.0/
+├── .gitignore
+├── README.md
+├── Constraints file/
+│   └── Basys3Labs.xdc
+├── Documents/
+│   └── Lab Sheet.pdf
+├── Simulation files/
+│   ├── 2Way 3 bit mux/
+│   │   └── Mux2way_3bit.vhd
+│   ├── 3-Bit RCA/
+│   │   └── RCA_3.vhd
+│   ├── ALU/
+│   │   └── ALU_tb.vhd
+│   ├── Instruction Decoder Test Bench/
+│   │   └── TB_Instruction_Decoder.vhd
+│   └── Program ROM Test Bench/
+│       └── TB_Program_ROM.vhd
+└── Source files/
+    ├── AL unit/
+    │   ├── 3 Bit RippleCarryAdder/
+    │   │   └── RCA_3.vhd
+    │   ├── 4 Bit RippleCarryAdder/
+    │   │   └── RCA_4.vhd
+    │   ├── ADD SUB Unit/
+    │   │   └── 4_bit_ALU.vhd
+    │   ├── Full Adder/
+    │   │   └── FA.vhd
+    │   └── Half Adder/
+    │       └── HA.vhd
+    ├── Control elements/
+    │   ├── Instruction Decoder/
+    │   │   └── Instruction_Decoder.vhd
+    │   ├── Program Counter/
+    │   │   └── Program_Counter.vhd
+    │   └── Slow Clock/
+    │       └── slow_clock.vhd
+    ├── Full source file bundle/
+    │   ├── 4_bit_ALU.vhd
+    │   ├── BusDef.vhd
+    │   ├── Constants.vhd
+    │   ├── Decoder_2_to_4.vhd
+    │   ├── Decoder_3_to_8.vhd
+    │   ├── FA.vhd
+    │   ├── HA.vhd
+    │   ├── Instruction_Decoder.vhd
+    │   ├── LUT_16_7.vhd
+    │   ├── Mux_2Way_3bit.vhd
+    │   ├── Mux_2Way_4bit.vhd
+    │   ├── Mux_8way_4bit.vhd
+    │   ├── NanoProcessor.vhd
+    │   ├── Program Counter.vhd
+    │   ├── Program_ROM.vhd
+    │   ├── RCA_3.vhd
+    │   ├── RCA_4.vhd
+    │   ├── RegBank.vhd
     │   ├── Reg_4Bit.vhd
-    │   ├── RegBank.vhd          # 8x4-bit Register Bank
-    │   └── Program_ROM.vhd      # Machine code storage
-    ├── control/                 
-    │   ├── slow_clock.vhd       # 100MHz to 2Hz divider
-    │   ├── Program Counter.vhd  
-    │   └── Instruction_Decoder.vhd
-    ├── routing/                 
-    │   ├── Decoder_2_to_4.vhd & Decoder_3_to_8.vhd
-    │   └── Mux_2Way_3bit.vhd, Mux_2Way_4bit.vhd, Mux_8way_4bit.vhd
-    ├── io/                      
-    │   └── LUT_16_7.vhd         # 7-Segment Hex Decoder
-    └── top/                     
-        └── NanoProcessor.vhd    # Top-Level Entity
+    │   └── slow_clock.vhd
+    ├── IO elements/
+    │   └── Seven Segment LUT/
+    │       └── LUT_16_7.vhd
+    ├── Memory/
+    │   ├── 4 Bit Register/
+    │   │   └── Reg_4Bit.vhd
+    │   ├── Program Rom/
+    │   │   └── Program_ROM.vhd
+    │   └── Register Bank/
+    │       └── RegBank.vhd
+    ├── Packages/
+    │   ├── Bus Definitions/
+    │   │   └── BusDef.vhd
+    │   └── Constants/
+    │       └── Constants.vhd
+    ├── Routing elements/
+    │   ├── Decoders/
+    │   │   ├── 2 to 4 Decoder/
+    │   │   │   └── Decoder_2_to_4.vhd
+    │   │   └── 3 to 8 Decoder/
+    │   │       └── Decoder_3_to_8.vhd
+    │   └── Muxes/
+    │       ├── 2 Way 3 Bit MUX/
+    │       │   └── Mux_2Way_3bit.vhd
+    │       ├── 2 Way 4 Bit MUX/
+    │       │   └── Mux_2Way_4bit.vhd
+    │       └── 8 Way 4 Bit MUX/
+    │           └── Mux_8way_4bit.vhd
+    └── Top FIle/
+        └── NanoProcessor.vhd
