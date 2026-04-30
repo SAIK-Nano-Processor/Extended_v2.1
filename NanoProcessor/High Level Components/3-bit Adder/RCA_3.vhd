@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use WORK.BUSDEF.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,10 +33,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity RCA_3 is
-    Port ( A : in STD_LOGIC_VECTOR (2 downto 0);
-           B : in STD_LOGIC_VECTOR (2 downto 0);
+    Port ( A : in Data_bus_3_bit;
+           B : in Data_bus_3_bit;
            C_in : in STD_LOGIC;
-           S : out STD_LOGIC_VECTOR (2 downto 0);
+           S : out Data_bus_3_bit;
            C_out : out STD_LOGIC);
 end RCA_3;
 
