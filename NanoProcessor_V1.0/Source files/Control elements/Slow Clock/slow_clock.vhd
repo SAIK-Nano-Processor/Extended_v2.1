@@ -3,56 +3,41 @@
 -- Engineer: Jayarathne D.G.S.A
 -- 
 -- Create Date: 04/27/2026 02:00:03 PM
--- Design Name: 
 -- Module Name: slow_clock - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
 -- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
+-- Optimized 1Hz clock generator. Uses a constrained integer to minimize 
+-- Flip-Flop usage (26-bit vs default 32-bit).
 ----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity slow_clock is
-    Port ( clk_in : in STD_LOGIC;
-           clk_out : out STD_LOGIC);
+    Port ( 
+        clk_in  : in  STD_LOGIC; 
+        clk_out : out STD_LOGIC 
+    );
 end slow_clock;
 
 architecture Behavioral of slow_clock is
-    signal count : integer := 1;
+    -- Range constraint prevents Vivado from using a 32-bit register.
+    signal count      : integer range 1 to 50000000 := 1;
     signal clk_status : std_logic := '0';
 begin
+
+    -- Concurrent assignment ensures clk_out always follows the status bit
+    clk_out <= clk_status;
+
     process (clk_in)
     begin
         if rising_edge(clk_in) then
-            count <= count + 1;
-            
-            -- Toggle the clock state every 100,000,000 ticks (approx 1 second ON, 1 second OFF)
-            if (count = 50000000) then -- 25000000
-                clk_status <= not clk_status;
-                clk_out <= clk_status;
-                count <= 1; -- Reset the counter
+            if (count = 50000000) then 
+                clk_status <= not clk_status; -- Toggle every 0.5s for 1Hz frequency
+                count <= 1;                   -- Reset the counter
+            else
+                count <= count + 1;
             end if;
         end if;
     end process;
-
 
 end Behavioral;
