@@ -1,13 +1,12 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: SAIK
+-- Engineer: Jaylath K.D
 -- 
 -- Create Date: 04/30/2026 06:37:13 AM
 -- Design Name: 
 -- Module Name: RegBank - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
+-- Project Name: Lab 9-10
+-- Target Devices: Basys 3
 -- Description: 
 -- 
 -- Dependencies: 
@@ -17,7 +16,6 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -33,112 +31,110 @@ use WORK.BUSDEF.ALL;
 --use UNISIM.VComponents.all;
 
 entity RegBank is
-    Port ( Clk : in STD_LOGIC;
-           Reset : in  STD_LOGIC;
-           Data_in : in Data_bus;
-           Register_Address : in Address_bus;
-           Data_out : out Data_bus_8x4
-          );
+    Port ( 
+        Clk              : in STD_LOGIC;
+        Reset            : in STD_LOGIC;
+        Data_in          : in Data_bus;
+        Register_Address : in Address_bus;
+        Data_out         : out Data_bus_8x4
+    );
 end RegBank;
 
 architecture Behavioral of RegBank is
 
-component Reg_4Bit
-    Port ( D   : in  Data_bus;
-           En  : in  STD_LOGIC;
-           Res : in  STD_LOGIC;
-           Clk : in  STD_LOGIC;
-           Q   : out Data_bus
-          );
-end component; 
+    component Reg_4Bit
+        Port ( 
+            D   : in  Data_bus;
+            En  : in  STD_LOGIC;
+            Res : in  STD_LOGIC;
+            Clk : in  STD_LOGIC;
+            Q   : out Data_bus
+        );
+    end component; 
 
-component Decoder_3_to_8 
-    Port ( I : in Address_bus;
-           EN : in STD_LOGIC;
-           Y : out Memory_selector 
-          );
-end component;
-   
-signal Decoder_out : Memory_selector;
+    component Decoder_3_to_8 
+        Port ( 
+            I  : in Address_bus;
+            EN : in STD_LOGIC;
+            Y  : out Memory_selector 
+        );
+    end component;
+       
+    signal Decoder_out : Memory_selector;
 
 begin
+
     Decoder_3_to_8_0 : Decoder_3_to_8
     port map(
-        I => Register_Address,
+        I  => Register_Address,
         EN => '1',
-        Y => Decoder_out
-        );
+        Y  => Decoder_out
+    );
         
-    
-    Reg0 : Reg_4Bit
-    port map(
-        D => "0000",
-        En => Decoder_out(0),
-        Res => Reset,
-        Clk => Clk,
-        Q => Data_out(0)
-        );
+    -- We do not instantiate Reg0. We directly tie the output bus to ground.
+    Data_out(0) <= "0000";
         
     Reg1 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(1),
+        D   => Data_in,
+        En  => Decoder_out(1),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(1)
-        );
+        Q   => Data_out(1)
+    );
 
     Reg2 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(2),
+        D   => Data_in,
+        En  => Decoder_out(2),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(2)
-        );
+        Q   => Data_out(2)
+    );
         
     Reg3 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(3),
+        D   => Data_in,
+        En  => Decoder_out(3),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(3)
-        );
+        Q   => Data_out(3)
+    );
             
     Reg4 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(4),
+        D   => Data_in,
+        En  => Decoder_out(4),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(4)
-        );
+        Q   => Data_out(4)
+    );
 
     Reg5 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(5),
+        D   => Data_in,
+        En  => Decoder_out(5),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(5)
-        );  
+        Q   => Data_out(5)
+    );  
 
     Reg6 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(6),
+        D   => Data_in,
+        En  => Decoder_out(6),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(6)
-        );
+        Q   => Data_out(6)
+    );
 
     Reg7 : Reg_4Bit
     port map(
-        D => Data_in,
-        En => Decoder_out(7),
+        D   => Data_in,
+        En  => Decoder_out(7),
         Res => Reset,
         Clk => Clk,
-        Q => Data_out(7)
-        );  
+        Q   => Data_out(7)
+    );  
+
 end Behavioral;
